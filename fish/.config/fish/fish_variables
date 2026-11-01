@@ -1,0 +1,4 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR fish_prompt_pwd_dir_length:0
+SETUVAR fish_user_paths:/home/stefano/\x2elocal/share/gem/ruby/3\x2e4\x2e0/bin\x1e/home/stefano/\x2elocal/share/pnpm/bin\x1e/home/stefano/\x2escripts
