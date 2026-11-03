@@ -35,14 +35,24 @@ hl.workspace_rule({
 hl.workspace_rule({
 	workspace = "special:ytmusic",
 	animation = "slidefade",
-	on_created_empty = "uwsm app -- WebApp-YoutubeMusicChromium5294.desktop",
 })
+
+hl.on("workspace.created", function(w)
+    if w.name == "special:ytmusic" then
+        hl.exec_cmd("uwsm app -- WebApp-YoutubeMusicChromium5294.desktop")
+    end
+end)
 
 hl.workspace_rule({
 	workspace = "special:whatsapp",
 	animation = "fade",
-	on_created_empty = "uwsm app -- WebApp-WhatsappWeb1304.desktop",
 })
+
+hl.on("workspace.created", function(w)
+    if w.name == "sspecial:whatsapp" then
+        hl.exec_cmd("uwsm app -- WebApp-WhatsappWeb1304.desktop")
+    end
+end)
 
 hl.workspace_rule({
 	workspace = "special:magic",
