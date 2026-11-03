@@ -26,13 +26,6 @@ hl.workspace_rule({
 })
 
 hl.workspace_rule({
-	workspace = "special:whatsapp",
-	--layout = "scrolling",
-	animation = "fade",
-
-})
-
-hl.workspace_rule({
 	workspace = "special:ytmusic",
 	animation = "slidefade",
 })
@@ -45,11 +38,12 @@ end)
 
 hl.workspace_rule({
 	workspace = "special:whatsapp",
+	--layout = "scrolling",
 	animation = "fade",
 })
 
 hl.on("workspace.created", function(w)
-    if w.name == "sspecial:whatsapp" then
+    if w.name == "special:whatsapp" then
         hl.exec_cmd("uwsm app -- WebApp-WhatsappWeb1304.desktop")
     end
 end)
