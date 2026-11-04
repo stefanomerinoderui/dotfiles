@@ -1,5 +1,8 @@
 [terminal]
-shell = { program = "/bin/bash", args = ["-l"] }
+shell = {
+    program = "/bin/fish",
+    args = ["-l"]
+}
 
 [window]
 opacity = 0.6
