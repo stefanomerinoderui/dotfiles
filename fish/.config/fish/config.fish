@@ -29,7 +29,7 @@ alias ministack='env AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test aws --end
 alias load_conda='source /opt/miniconda3/etc/profile.d/conda.fish'
 
 alias clearclear='/usr/bin/clear'
-alias clear='echo "Casi, pero mejor CTRL + L"'
+#alias clear='echo "Casi, pero mejor CTRL + L"'
 
 # 3. Environment Variables
 set -gx EDITOR nvim
