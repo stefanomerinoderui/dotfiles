@@ -8,12 +8,26 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "context_servers": {
+    "Openclaw": {
+      "enabled": false,
+      "remote": false,
+      "command": "openclaw",
+      "args": [
+        "mcp",
+        "serve"
+      ]
+    },
     "code-mode": {
       "enabled": true,
       "remote": false,
-      "command": "/home/stefano/.local/share/pnpm/bin/rea",
-      "args": ["mcp"],
+      "command": "/home/stefano/.nvm/nvm-exec",
+      "args": [
+        "pnpx",
+        "-y",
+        "@utcp/code-mode-mcp"
+      ],
       "env": {
+        "NODE_VERSION": "24",
         "UTCP_CONFIG_FILE": "/home/stefano/.config/utcp/.utcp_config.json",
       },
     },
@@ -33,11 +47,22 @@
   "proxy": "",
   "format_on_save": "on",
   "agent_servers": {
+    "OpenClaw": {
+      "type": "custom",
+      "command": "/home/stefano/.local/share/pnpm/bin/openclaw",
+      "args": [
+        "acp",
+        "--url",
+        "wss://openclaw.home.142142142.xyz",
+        "--token-file",
+        "~/.openclaw/gateway.token"
+      ]
+    },
     "claude-acp": {
       "default_config_options": {
         "effort": "medium",
-        "model": "opus",
-        "mode": "plan",
+        "model": "sonnet",
+        "mode": "auto",
       },
       "type": "registry",
     },
@@ -73,7 +98,7 @@
   },
   "language_models": {
     "llama.cpp": {
-      "api_url": "http://100.68.214.102:8080",
+      "api_url": "http://100.68.214.102:8081",
       "available_models": [
         {
           "name": "qwen3.8-27b-uncensored-48k",
@@ -111,7 +136,99 @@
     },
   },
   "agent": {
+    "sandbox_permissions": {
+      "allow_unsandboxed": true
+    },
+    "tool_permissions": {
+      "tools": {
+        "write_file": {
+          "always_allow": [
+            {
+              "pattern": "^scripts/"
+            }
+          ]
+        },
+        "fetch": {
+          "always_allow": [
+            {
+              "pattern": "^https?://raw\\.githubusercontent\\.com"
+            },
+            {
+              "pattern": "^https?://api\\.github\\.com"
+            },
+            {
+              "pattern": "^https?://duckduckgo\\.com"
+            },
+            {
+              "pattern": "^https?://github\\.com"
+            },
+            {
+              "pattern": "^https?://html\\.duckduckgo\\.com"
+            },
+            {
+              "pattern": "^https?://www\\.tdtlatinoamerica\\.com\\.ar"
+            }
+          ]
+        },
+        "terminal": {
+          "default": "allow",
+          "always_allow": [
+            {
+              "pattern": "^nmap\\b"
+            },
+            {
+              "pattern": "^tail\\b"
+            },
+            {
+              "pattern": "^echo\\s+===WAITPAGE===(\\s|$)"
+            },
+            {
+              "pattern": "^curl\\b"
+            },
+            {
+              "pattern": "^echo\\b"
+            },
+            {
+              "pattern": "^echo\\s+===TOKEN===(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+===B64===(\\s|$)"
+            },
+            {
+              "pattern": "^grep\\b"
+            },
+            {
+              "pattern": "^head\\b"
+            }
+          ]
+        }
+      }
+    },
     "profiles": {
+      "code-mode": {
+        "name": "code-mode",
+        "tools": {
+          "delete_path": true,
+          "spawn_agent": true,
+          "terminal": true,
+          "write_file": true,
+          "move_path": true,
+          "read_file": true,
+          "skill": true,
+          "edit_file": true,
+          "list_directory": true,
+          "list_agents_and_models": true,
+          "grep": true,
+          "find_path": true,
+          "fetch": true,
+          "diagnostics": true,
+          "create_directory": true,
+          "copy_path": true,
+          "ask_user": true
+        },
+        "enable_all_context_servers": false,
+        "context_servers": {}
+      },
       "test": {
         "name": "test",
         "tools": {},
@@ -120,6 +237,7 @@
       },
     },
     "default_model": {
+      "enable_thinking": false,
       "provider": "llama.cpp",
       "model": "qwen3.8-27b-uncensored-256k",
     },
