@@ -7,6 +7,17 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- Hace que OBS-VKCAPTURE capture tambien mangohud
 --hl.env("VK_INSTANCE_LAYERS", "VK_LAYER_MANGOHUD_overlay_x86_64:VK_LAYER_MANGOHUD_overlay_x86:VK_LAYER_OBS_vkcapture_64:VK_LAYER_OBS_vkcapture_32")
 
+-- funcion para concatenar parametros de mangohud para su variable de entorno MANGOHUD_CONFIG remplazando caracteres especiales por los aceptados por la variable de entorno
+local function concat_mangohud(values)
+    local escaped = {}
+
+    for i, value in ipairs(values) do
+        escaped[i] = value:gsub("[,:]", "\\%1")
+    end
+
+    return table.concat(escaped, ",")
+end
+
 run_if_pc("GAMER", function()
     --hl.env("","")
 
@@ -15,14 +26,14 @@ run_if_pc("GAMER", function()
     --hl.env("MANGOHUD","1")
     hl.env("MANGOHUD_CONFIG","read_cfg"..[[
     ]])
-    hl.env("MANGOHUD_CONFIG", table.concat({
+    hl.env("MANGOHUD_CONFIG", concat_mangohud({
         "read_cfg",
         "network=eno2",
         "cpu_text=i7-8700k",
         "gpu_text=RTX-3090",
-	"fps_limit=160,60,30,144",
-        "pci_dev=0000\\:01\\:00.0",
-    }, ","))
+	"fps_limit=160,60,30,144,0",
+        "pci_dev=0000:01:00.0",
+    }))
 
     hl.env("WINEUSEPORTALS","1")
     hl.env("WINE_NTSYNC","1")
@@ -68,16 +79,16 @@ end)
 
 run_if_pc("laptop-stefano", function()
     --hl.env("MANGOHUD_CONFIGFILE","/home/stefano/.config/MangoHud/laptop-stefano.conf")
-    hl.env("MANGOHUD_CONFIG", table.concat({
+    hl.env("MANGOHUD_CONFIG", concat_mangohud({
         "read_cfg",
         "cpu_text=i7-1265U",
         "gpu_text=Iris-Xe",
 	"fps_limit=60,30,20",
-        "pci_dev=0000\\:00\\:02.0",
+        "pci_dev=0000:00:02.0",
         "gpu_temp=0",
         "gpu_fan=0",
         "vram=0",
-    }, ","))
+    }))
 
     hl.env("DXVK_FILTER_DEVICE_NAME","Intel(R) Iris(R) Xe Graphics (ADL GT2)");
 
