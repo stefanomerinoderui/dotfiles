@@ -35,6 +35,15 @@ This file defines how I should work across all Claude Code sessions, regardless 
 - Be direct and concise in technical explanations; get to the point.
 - If a task is ambiguous, assume the most reasonable interpretation, briefly state the assumption, and proceed, instead of asking about minor details.
 - Only ask questions when a wrong decision would mean redoing significant work or touching something privileged/root-related without being sure of the context.
+
+## code-mode MCP (`call_tool_chain`)
+
+- Write the `code` argument as plain JavaScript, not TypeScript. Despite its description, `@utcp/code-mode` (verified on 1.2.13) does no transpilation: it wraps the code in an async function and compiles it directly in `isolated-vm`, so any type annotation (`const a: number`, `Record<...>`, `catch (e: any)`, `as T`) fails with a syntax error.
+- The code runs inside an async function: use top-level `await` and `return` the result.
+- Call tools as `<manual>.<tool>(args)`, with hyphens in the manual name replaced by underscores (e.g. the `truenas-mcp` manual is `truenas_mcp`). Use `list_tools` / `tools_info` to discover names and arguments; the TS interfaces from `tools_info` are documentation only.
+- A failed script still returns `"success": true`; the real error is in `logs` as `[ERROR] Code execution failed: ...`. Always check `logs` before trusting the result.
+- Error line numbers are offset by +4 because of the wrapper.
+- Wrap each tool call in try/catch when batching several calls, so one failure doesn't hide the others.
 # graphify
 - **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
 When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
