@@ -56,6 +56,9 @@
 	"filament_start_gcode": [
 		"; filament start gcode\n; end filament start gcode\n;SET_RETRACTION RETRACT_LENGTH= RETRACT_SPEED=  UNRETRACT_SPEED=\n\n"
 	],
+	"filament_vendor": [
+		"Printalot"
+	],
 	"from": "User",
 	"hot_plate_temp": [
 		"60"

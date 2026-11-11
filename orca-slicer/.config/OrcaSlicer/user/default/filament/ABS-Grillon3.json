@@ -1,4 +1,10 @@
 {
+	"additional_cooling_fan_speed": [
+		"0"
+	],
+	"close_fan_the_first_x_layers": [
+		"0"
+	],
 	"complete_print_exhaust_fan_speed": [
 		"80"
 	],
@@ -9,7 +15,7 @@
 		"60"
 	],
 	"default_filament_colour": [
-		"#ED333B"
+		"#77767B"
 	],
 	"during_print_exhaust_fan_speed": [
 		"60"
@@ -21,13 +27,16 @@
 		"60"
 	],
 	"fan_cooling_layer_time": [
-		"25"
+		"0"
+	],
+	"fan_max_speed": [
+		"0"
 	],
 	"fan_min_speed": [
-		"20"
+		"0"
 	],
 	"filament_cost": [
-		"37240"
+		"31452"
 	],
 	"filament_density": [
 		"1.25"
@@ -48,40 +57,49 @@
 		"40"
 	],
 	"filament_settings_id": [
-		"PLA-Grillon3-fluo"
+		"ABS-Grillon3"
 	],
 	"filament_start_gcode": [
 		"; filament start gcode\n; end filament start gcode\n;SET_RETRACTION RETRACT_LENGTH= RETRACT_SPEED=  UNRETRACT_SPEED=\n\n"
 	],
+	"filament_type": [
+		"ABS"
+	],
+	"filament_vendor": [
+		"Grillon3"
+	],
 	"from": "User",
 	"hot_plate_temp": [
-		"60"
+		"85"
 	],
 	"hot_plate_temp_initial_layer": [
-		"60"
+		"90"
 	],
 	"inherits": "Generic PLA @System",
-	"name": "PLA-Grillon3-fluo",
+	"name": "ABS-Grillon3",
 	"nozzle_temperature": [
-		"210"
+		"240"
 	],
 	"nozzle_temperature_initial_layer": [
-		"215"
+		"235"
 	],
 	"nozzle_temperature_range_high": [
-		"225"
+		"245"
 	],
 	"nozzle_temperature_range_low": [
-		"195"
+		"230"
 	],
 	"pressure_advance": [
 		"0.026"
+	],
+	"reduce_fan_stop_start_freq": [
+		"0"
 	],
 	"required_nozzle_HRC": [
 		"0"
 	],
 	"slow_down_layer_time": [
-		"12"
+		"0"
 	],
 	"slow_down_min_speed": [
 		"2"
