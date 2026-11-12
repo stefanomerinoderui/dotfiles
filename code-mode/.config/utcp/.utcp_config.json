@@ -13,8 +13,9 @@
         "mcpServers": {
           "openclaw": {
             "transport": "stdio",
-            "command": "/home/stefano/.local/share/pnpm/bin/openclaw",
+            "command": "pnpx",
             "args": [
+	      "openclaw",
 	      "mcp",
 	      "serve",
 	      "--url",
@@ -36,7 +37,7 @@
             "command": "/bin/sh",
             "args": [
               "-c",
-              "set -a; . /home/stefano/.truenas.env; set +a; exec /home/stefano/Downloads/truenas-mcp-linux-amd64 --insecure"
+              "set -a; . /home/stefano/.truenas.env; set +a; exec /home/stefano/.local/bin/truenas-mcp-linux-amd64 --insecure"
             ]
           }
         }
@@ -55,8 +56,27 @@
             ],
             "env": {
               "GHIDRA_INSTALL_DIR": "/opt/ghidra",
-              "HOPPER_LAUNCHER_PATH": "/opt/hopper-v4/bin/Hopper"
+	      "JAVA_HOME": "/usr/lib/jvm/java-27-openjdk",
+              "HOPPER_LAUNCHER_PATH": "/opt/hopper/bin/Hopper"
             }
+          }
+        }
+      }
+    },
+    {
+      "name": "qgis",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "qgis": {
+            "transport": "stdio",
+            "command": "/home/stefano/.local/share/pnpm/bin/rea",
+            "args": [
+		"--directory",
+		"/home/stefano/Projects/qgis_mcp/src/qgis_mcp",
+		"run",
+		"qgis_mcp_server.py"
+            ]
           }
         }
       }
