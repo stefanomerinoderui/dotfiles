@@ -13,20 +13,6 @@ hg.config({
     layers = { enabled = true },
 })
 
--- Layer surfaces: each call whitelists the namespace and configures it
-hg.layer("waybar", { preset = "waybar_glass", mask_threshold = 0.065 })
-
-hg.layer("swaync", { preset = "swaync_glass", mask_threshold = 0.079 })
-hg.layer("swaync-notification-window", { preset = "swaync_glass", mask_threshold = 0.031 })
-hg.layer("swaync-control-center", { preset = "swaync_glass", mask_threshold = 0.031 })
-
-hg.layer("swayosd", { preset = "swayosd_glass", mask_threshold = 0.079 })
-
---hg.layer("debug-panel", { exclude = true })
-
-hg.layer("rofi", { preset = "rofi_glass", mask_threshold = 0.031 })
-
-
 -- Presets
 hg.preset("clear", {
     glass_opacity = 1,
@@ -52,8 +38,10 @@ hg.preset("swaync_glass", {
 
 hg.preset("waybar_glass", {
     glass_opacity = 1,
-    blur_strength = 0,
+    contrast = 1,
+    blur_strength = 0.2,
     fresnel_strength = 0.45,
+    contrast = 1,
     dark = { brightness = 0.5, tint_color = "0xed8e0000"  },
 })
 
@@ -87,3 +75,16 @@ hg.preset("contrasted", {
     adaptive_dim = 1.5,
     dark = { tint_color = 0x02142aa9 },
 })
+
+-- Layer surfaces: each call whitelists the namespace and configures it
+hg.layer("waybar", { preset = "waybar_glass", mask_threshold = 0.065 })
+
+hg.layer("swaync", { preset = "swaync_glass", mask_threshold = 0.079 })
+hg.layer("swaync-notification-window", { preset = "swaync_glass", mask_threshold = 0.031 })
+hg.layer("swaync-control-center", { preset = "swaync_glass", mask_threshold = 0.031 })
+
+hg.layer("swayosd", { preset = "swayosd_glass", mask_threshold = 0.079 })
+
+--hg.layer("debug-panel", { exclude = true })
+
+hg.layer("rofi", { preset = "rofi_glass", mask_threshold = 0.031 })
